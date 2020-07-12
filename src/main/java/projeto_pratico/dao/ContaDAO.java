@@ -12,7 +12,7 @@ public class ContaDAO {
 
 	public static EntityManager em = HibernateUtil.getEntityManager();
 	
-	public static Conta create(Integer cpf, String nome, Date data_abertura, float limite_especial, float saldo) {
+	public static Conta create(String cpf, String nome, Date data_abertura, float limite_especial, float saldo) {
 		Conta c = new Conta();
 		
 		c.setCpf_titular(cpf);
@@ -29,10 +29,16 @@ public class ContaDAO {
 		return em.find(Conta.class, c.getNumero());
 	}
 	
-	public Conta getById(Integer numero) {
-		Conta c = em.find(Conta.class, numero);
+	public static Conta create(Conta c) {
+		em.getTransaction().begin();
+		em.persist(c);
+		em.getTransaction().commit();
 		
-		List<Conta> todasContas = (List<Conta>) em.createQuery("FROM Conta", List.class);
+		return em.find(Conta.class, c.getNumero());
+	}
+	
+	public static Conta getById(Integer numero) {
+		Conta c = em.find(Conta.class, numero);
 		
 		return c;
 	}

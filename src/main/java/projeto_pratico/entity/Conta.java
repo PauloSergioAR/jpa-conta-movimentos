@@ -30,7 +30,7 @@ public class Conta {
 	private String nome_titular;
 	
 	@Column(name="CPF_TITULAR")
-	private Integer cpf_titular;
+	private String cpf_titular;
 	
 	@Column(name="LIMITE_ESPECIAL")
 	private float limite_especial;
@@ -67,11 +67,11 @@ public class Conta {
 		this.nome_titular = nome_titular;
 	}
 
-	public Integer getCpf_titular() {
+	public String getCpf_titular() {
 		return cpf_titular;
 	}
 
-	public void setCpf_titular(Integer cpf_titular) {
+	public void setCpf_titular(String cpf_titular) {
 		this.cpf_titular = cpf_titular;
 	}
 

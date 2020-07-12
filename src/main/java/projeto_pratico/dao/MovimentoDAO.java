@@ -31,12 +31,20 @@ public class MovimentoDAO {
 		return em.find(Movimento.class, m.getCodigo());
 	}
 	
+	public static Movimento create(Movimento m){
+		em.getTransaction().begin();
+		em.persist(m);
+		em.getTransaction().commit();
+		
+		return em.find(Movimento.class, m.getCodigo());	
+	}
+	
 	public static Movimento getById(Integer codigo) {
 		return em.find(Movimento.class, codigo);
 	}
 	
 	public static List<Movimento> getMovimentosByConta(Conta conta) {		
-		Query q = em.createQuery("FROM Movimento where conta_origem = :conta");
+		Query q = em.createQuery("FROM Movimento where conta_origem = :conta OR conta_destino = :conta");
 		q.setParameter("conta", conta);
 		
 		return (List<Movimento>) q.getResultList();			

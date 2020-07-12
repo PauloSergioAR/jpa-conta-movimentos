@@ -107,4 +107,10 @@ public class Movimento {
 	public void setImpostos(float impostos) {
 		this.impostos = impostos;
 	}
+	
+	public String toString() {
+		return "Conta origem " + getConta_origem().getNome_titular() + ": " + getConta_origem().getNumero() + "\n" +
+				"Conta destino " + getConta_destino().getNome_titular() + ": " + getConta_destino().getNumero() + "\n" +
+				"Valor: R$ " + getValor();
+	}
 }
